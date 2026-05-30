@@ -63,7 +63,7 @@ export function Contact() {
     setStatus("loading");
     setServerMsg("");
     try {
-      const res = await fetch("/api/contact", {
+      const res = await fetch("https://formspree.io/f/xdajvayy", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(form),
@@ -76,7 +76,9 @@ export function Contact() {
     } catch (err) {
       setStatus("error");
       setServerMsg(
-        err instanceof Error ? err.message : "Unable to send. Email me directly."
+        err instanceof Error
+          ? err.message
+          : "Unable to send. Email me directly.",
       );
     }
   };
@@ -150,7 +152,10 @@ export function Contact() {
             I usually reply within 24 hours.
           </p>
 
-          <div aria-hidden="true" className="absolute left-[-9999px] top-auto h-0 w-0 overflow-hidden">
+          <div
+            aria-hidden="true"
+            className="absolute left-[-9999px] top-auto h-0 w-0 overflow-hidden"
+          >
             <label htmlFor="website">Website (leave blank)</label>
             <input
               id="website"
@@ -159,7 +164,9 @@ export function Contact() {
               tabIndex={-1}
               autoComplete="off"
               value={form.website}
-              onChange={(e) => setForm((f) => ({ ...f, website: e.target.value }))}
+              onChange={(e) =>
+                setForm((f) => ({ ...f, website: e.target.value }))
+              }
             />
           </div>
 
@@ -208,7 +215,10 @@ export function Contact() {
               htmlFor="message"
               className="text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400"
             >
-              Message <span className="text-red-500" aria-hidden="true">*</span>
+              Message{" "}
+              <span className="text-red-500" aria-hidden="true">
+                *
+              </span>
             </label>
             <textarea
               id="message"
@@ -219,19 +229,21 @@ export function Contact() {
               aria-invalid={Boolean(errors.message)}
               aria-describedby={errors.message ? "message-error" : undefined}
               value={form.message}
-              onChange={(e) => setForm((f) => ({ ...f, message: e.target.value }))}
+              onChange={(e) =>
+                setForm((f) => ({ ...f, message: e.target.value }))
+              }
               placeholder="Tell me a bit about the role, team, and stack…"
               className="mt-1.5 w-full rounded-lg border border-slate-200 bg-white px-3 py-2.5 text-sm shadow-sm outline-none transition focus:border-teal-500 focus:ring-2 focus:ring-teal-500/20 dark:border-navy-700 dark:bg-navy-900 dark:text-slate-100"
             />
             <div className="mt-1 flex items-center justify-between text-xs">
               {errors.message ? (
-                <p id="message-error" className="text-red-500">{errors.message}</p>
+                <p id="message-error" className="text-red-500">
+                  {errors.message}
+                </p>
               ) : (
                 <span />
               )}
-              <span className="text-slate-400">
-                {form.message.length}/5000
-              </span>
+              <span className="text-slate-400">{form.message.length}/5000</span>
             </div>
           </div>
 
@@ -243,7 +255,8 @@ export function Contact() {
             >
               {status === "loading" ? (
                 <>
-                  <Loader2 size={16} className="animate-spin" aria-hidden /> Sending…
+                  <Loader2 size={16} className="animate-spin" aria-hidden />{" "}
+                  Sending…
                 </>
               ) : (
                 <>
@@ -345,7 +358,11 @@ function Field({
         className="text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400"
       >
         {label}
-        {required && <span className="ml-0.5 text-red-500" aria-hidden="true">*</span>}
+        {required && (
+          <span className="ml-0.5 text-red-500" aria-hidden="true">
+            *
+          </span>
+        )}
       </label>
       <input
         id={name}
