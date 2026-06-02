@@ -1,10 +1,10 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Database, TrendingUp, Clock, BarChart3 } from "lucide-react";
+import { Database, TrendingUp, Clock, BarChart3, type LucideIcon } from "lucide-react";
 import { stats } from "@/data/resume";
 
-const icons = [Database, TrendingUp, Clock, BarChart3];
+const iconMap: Record<string, LucideIcon> = { Database, TrendingUp, Clock, BarChart3 };
 
 export function Stats() {
   return (
@@ -12,7 +12,7 @@ export function Stats() {
       <div className="container-px">
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {stats.map((s, i) => {
-            const Icon = icons[i];
+            const Icon = iconMap[s.icon] ?? Database;
             return (
               <motion.div
                 key={s.label}

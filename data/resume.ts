@@ -239,10 +239,10 @@ export const projects: Project[] = [
 ];
 
 export const stats = [
-  { label: "Records analyzed", value: "500K+", sub: "Pandas + SQL pipelines" },
-  { label: "Data quality lift", value: "30%", sub: "@ Leapfrog Technology" },
-  { label: "Manual reporting cut", value: "20–25%", sub: "Excel + Power BI automation" },
-  { label: "BI dashboards shipped", value: "10+", sub: "Power BI · Tableau · Looker" },
+  { label: "Records analyzed", value: "500K+", sub: "Pandas + SQL pipelines", icon: "Database" },
+  { label: "Data quality lift", value: "30%", sub: "@ Leapfrog Technology", icon: "TrendingUp" },
+  { label: "Manual reporting cut", value: "20–25%", sub: "Excel + Power BI automation", icon: "Clock" },
+  { label: "BI dashboards shipped", value: "10+", sub: "Power BI · Tableau · Looker", icon: "BarChart3" },
 ];
 
 export const certifications = [

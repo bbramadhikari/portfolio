@@ -1,5 +1,6 @@
 "use client";
 
+import type { ReactNode } from "react";
 import { motion } from "framer-motion";
 import { GraduationCap, BadgeCheck, MapPin, Briefcase } from "lucide-react";
 import { about, profile } from "@/data/resume";
@@ -91,7 +92,7 @@ function Fact({
   label,
   value,
 }: {
-  icon: React.ReactNode;
+  icon: ReactNode;
   label: string;
   value: string;
 }) {

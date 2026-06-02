@@ -2,8 +2,8 @@
 
 import { useState } from "react";
 import { motion } from "framer-motion";
+import type { ReactNode } from "react";
 import {
-  Github,
   Linkedin,
   Mail,
   MapPin,
@@ -13,6 +13,7 @@ import {
   AlertCircle,
   Loader2,
 } from "lucide-react";
+import { GithubIcon } from "./GithubIcon";
 import { profile } from "@/data/resume";
 import { Section } from "./Section";
 
@@ -123,7 +124,7 @@ export function Contact() {
                 href={profile.linkedin}
               />
               <ContactRow
-                icon={<Github size={16} />}
+                icon={<GithubIcon size={16} />}
                 label="GitHub"
                 value="github.com/bbramadhikari"
                 href={profile.github}
@@ -289,7 +290,7 @@ function ContactRow({
   value,
   href,
 }: {
-  icon: React.ReactNode;
+  icon: ReactNode;
   label: string;
   value: string;
   href?: string;

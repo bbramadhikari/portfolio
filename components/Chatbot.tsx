@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Bot, MessageSquare, Send, Sparkles, X } from "lucide-react";
+import { profile } from "@/data/resume";
 
 type Msg = { from: "user" | "bot"; text: string };
 
@@ -60,14 +61,14 @@ export function Chatbot() {
       const data = await res.json();
       const reply =
         data?.reply ||
-        "Sorry — I couldn't process that. Please email psnbabu5@gmail.com.";
+        `Sorry — I couldn't process that. Please email ${profile.email}.`;
       setMessages((m) => [...m, { from: "bot", text: reply }]);
     } catch {
       setMessages((m) => [
         ...m,
         {
           from: "bot",
-          text: "There was a network error. Please try again or email psnbabu5@gmail.com.",
+          text: `There was a network error. Please try again or email ${profile.email}.`,
         },
       ]);
     } finally {
@@ -162,6 +163,7 @@ export function Chatbot() {
                     {STARTERS.map((s) => (
                       <button
                         key={s}
+                        type="button"
                         onClick={() => send(s)}
                         className="rounded-full border border-slate-200 bg-white px-2.5 py-1 text-[11px] text-slate-600 transition-colors hover:border-teal-400 hover:text-navy-800 dark:border-navy-700 dark:bg-navy-900 dark:text-slate-300 dark:hover:text-white"
                       >

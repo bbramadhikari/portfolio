@@ -116,7 +116,7 @@ export function Projects() {
                 <a
                   href={p.link}
                   target="_blank"
-                  rel="noreferrer"
+                  rel="noopener noreferrer"
                   className="mt-5 inline-flex items-center gap-1.5 text-sm font-semibold text-navy-800 hover:underline dark:text-teal-400"
                 >
                   View Case Study / GitHub <ExternalLink size={14} />

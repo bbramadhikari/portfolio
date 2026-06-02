@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { Menu, X } from "lucide-react";
 import { ThemeToggle } from "./ThemeToggle";
@@ -18,6 +18,7 @@ const links = [
 export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
+  const headerRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 8);
@@ -31,12 +32,22 @@ export function Navbar() {
     const onKey = (e: KeyboardEvent) => {
       if (e.key === "Escape") setOpen(false);
     };
+    const onClickOutside = (e: MouseEvent) => {
+      if (headerRef.current && !headerRef.current.contains(e.target as Node)) {
+        setOpen(false);
+      }
+    };
     window.addEventListener("keydown", onKey);
-    return () => window.removeEventListener("keydown", onKey);
+    document.addEventListener("mousedown", onClickOutside);
+    return () => {
+      window.removeEventListener("keydown", onKey);
+      document.removeEventListener("mousedown", onClickOutside);
+    };
   }, [open]);
 
   return (
     <header
+      ref={headerRef}
       className={`fixed inset-x-0 top-0 z-40 transition-all duration-300 ${
         scrolled
           ? "border-b border-slate-200/70 bg-white/80 backdrop-blur-md dark:border-navy-800 dark:bg-navy-950/80"

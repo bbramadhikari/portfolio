@@ -5,13 +5,13 @@ import Link from "next/link";
 import {
   ArrowRight,
   Download,
-  Github,
   Linkedin,
   Mail,
   MapPin,
   Sparkles,
 } from "lucide-react";
 import { profile } from "@/data/resume";
+import { GithubIcon } from "./GithubIcon";
 
 export function Hero() {
   return (
@@ -27,7 +27,7 @@ export function Hero() {
           className="lg:col-span-7"
         >
           <span className="chip mb-5 gap-1.5">
-            <Sparkles size={12} className="text-teal-500" />
+            <Sparkles size={12} className="text-teal-500" aria-hidden />
             Open to Data Analyst roles in Canada
           </span>
 
@@ -45,10 +45,10 @@ export function Hero() {
 
           <div className="mt-7 flex flex-wrap gap-3">
             <a href={profile.resumeUrl} download className="btn-primary">
-              <Download size={16} /> Download Resume
+              <Download size={16} aria-hidden /> Download Resume
             </a>
             <Link href="#projects" className="btn-ghost">
-              View Projects <ArrowRight size={16} />
+              View Projects <ArrowRight size={16} aria-hidden />
             </Link>
             <Link href="#contact" className="btn-ghost">
               Contact Me
@@ -57,29 +57,29 @@ export function Hero() {
 
           <div className="mt-7 flex flex-wrap items-center gap-5 text-sm text-slate-500 dark:text-slate-400">
             <span className="inline-flex items-center gap-1.5">
-              <MapPin size={14} /> {profile.location}
+              <MapPin size={14} aria-hidden /> {profile.location}
             </span>
             <a
               href={profile.linkedin}
               target="_blank"
-              rel="noreferrer"
+              rel="noopener noreferrer"
               className="inline-flex items-center gap-1.5 hover:text-navy-800 dark:hover:text-white"
             >
-              <Linkedin size={14} /> LinkedIn
+              <Linkedin size={14} aria-hidden /> LinkedIn
             </a>
             <a
               href={profile.github}
               target="_blank"
-              rel="noreferrer"
+              rel="noopener noreferrer"
               className="inline-flex items-center gap-1.5 hover:text-navy-800 dark:hover:text-white"
             >
-              <Github size={14} /> GitHub
+              <GithubIcon size={14} /> GitHub
             </a>
             <a
               href={`mailto:${profile.email}`}
               className="inline-flex items-center gap-1.5 hover:text-navy-800 dark:hover:text-white"
             >
-              <Mail size={14} /> {profile.email}
+              <Mail size={14} aria-hidden /> {profile.email}
             </a>
           </div>
         </motion.div>
