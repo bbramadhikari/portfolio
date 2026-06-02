@@ -1,0 +1,16 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(grep -iE '\\\\.\\(jpg|jpeg|png|webp\\)$')",
+      "PowerShell(Add-Type -AssemblyName System.Drawing; $img = [System.Drawing.Image]::FromFile\\(\"d:\\\\baburam-portfolio\\\\public\\\\baburam.jpg\"\\); $img.Save\\(\"d:\\\\baburam-portfolio\\\\public\\\\baburam.png\", [System.Drawing.Imaging.ImageFormat]::Png\\); $img.Dispose\\(\\); Get-Item \"d:\\\\baburam-portfolio\\\\public\\\\baburam.png\" | Select-Object Name, Length)",
+      "PowerShell(pip install --user rembg onnxruntime pillow 2>&1)",
+      "PowerShell(Move-Item -Force \"d:\\\\baburam-portfolio\\\\public\\\\baburam-nobg.png\" \"d:\\\\baburam-portfolio\\\\public\\\\baburam.png\")",
+      "Bash(curl -s -X POST http://localhost:4321/api/contact -H \"Content-Type: application/json\" -d '{\"name\":\"x\",\"email\":\"not-an-email\",\"message\":\"long enough message here\"}' -w \" [%{http_code}]\\\\n\")",
+      "Bash(curl -s -X POST http://localhost:4321/api/contact -H \"Content-Type: application/json\" -d '{\"name\":\"x\"}' -w \" [%{http_code}]\\\\n\")",
+      "Bash(curl -s -X POST http://localhost:4321/api/contact -H \"Content-Type: application/json\" -d '{\"name\":\"x\",\"email\":\"a@b.com\",\"message\":\"hello there friend\",\"website\":\"spam\"}' -w \" [%{http_code}]\\\\n\")",
+      "Bash(curl -s -X POST http://localhost:4321/api/chat -H \"Content-Type: application/json\" -d '{\"message\":\"\"}' -w \" [%{http_code}]\\\\n\")",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\\\\n\" http://localhost:4321/does-not-exist)",
+      "Bash(grep -iE '\\\\.\\(jpg|jpeg|png|webp|svg\\)$')"
+    ]
+  }
+}

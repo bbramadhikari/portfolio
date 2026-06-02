@@ -62,12 +62,13 @@ export async function POST(req: Request) {
 
   const name = clean(body.name || "");
   const email = clean(body.email || "");
-  const subject = clean(body.subject || "");
+  // Subject is optional; the live form omits it. Fall back to a sensible default.
+  const subject = clean(body.subject || "") || "Portfolio enquiry";
   const message = clean(body.message || "");
 
-  if (!name || !email || !subject || !message) {
+  if (!name || !email || !message) {
     return NextResponse.json(
-      { ok: false, message: "All fields are required." },
+      { ok: false, message: "Name, email, and message are required." },
       { status: 400 }
     );
   }

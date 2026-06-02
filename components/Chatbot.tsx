@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Bot, MessageSquare, Send, Sparkles, X } from "lucide-react";
+import { Bot, Send, Sparkles, X } from "lucide-react";
 import { profile } from "@/data/resume";
 
 type Msg = { from: "user" | "bot"; text: string };
@@ -84,11 +84,23 @@ export function Chatbot() {
         aria-label={open ? "Close chat" : "Open chat about Baburam"}
         aria-expanded={open}
         aria-controls="chatbot-panel"
-        className="fixed bottom-5 right-5 z-40 inline-flex items-center gap-2 rounded-full bg-navy-800 px-4 py-3 text-sm font-semibold text-white shadow-lg ring-1 ring-black/5 transition-all hover:scale-105 hover:bg-navy-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-500 focus-visible:ring-offset-2 dark:bg-teal-500 dark:text-navy-950 dark:hover:bg-teal-400 dark:focus-visible:ring-offset-navy-950"
+        className="group fixed bottom-5 right-5 z-40 inline-flex items-center gap-3 rounded-full bg-coral-500 py-2.5 pl-2.5 pr-5 text-left text-white shadow-glow ring-1 ring-black/5 transition-all hover:-translate-y-0.5 hover:bg-coral-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-coral-400 focus-visible:ring-offset-2 dark:focus-visible:ring-offset-navy-950"
       >
-        {open ? <X size={18} aria-hidden /> : <MessageSquare size={18} aria-hidden />}
-        <span className="hidden sm:inline">
-          {open ? "Close" : "Ask about Baburam"}
+        <span className="relative grid h-9 w-9 place-items-center rounded-full bg-white text-coral-500">
+          {open ? <X size={18} aria-hidden /> : <Bot size={18} aria-hidden />}
+          {!open && (
+            <span className="absolute -right-0.5 -top-0.5 grid h-4 w-4 place-items-center rounded-full bg-navy-900 text-[9px] font-bold text-white ring-2 ring-coral-500">
+              1
+            </span>
+          )}
+        </span>
+        <span className="hidden leading-tight sm:block">
+          <span className="block text-sm font-bold">
+            {open ? "Close chat" : "Ask About Baburam"}
+          </span>
+          <span className="block text-[11px] font-medium text-white/80">
+            AI Assistant
+          </span>
         </span>
       </button>
 
@@ -99,19 +111,19 @@ export function Chatbot() {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 16, scale: 0.96 }}
             transition={{ duration: 0.2 }}
-            className="fixed bottom-24 right-5 z-40 flex w-[min(380px,calc(100vw-2.5rem))] flex-col overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-2xl dark:border-navy-700 dark:bg-navy-950"
+            className="fixed bottom-24 right-5 z-40 flex w-[min(380px,calc(100vw-2.5rem))] flex-col overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-2xl dark:border-navy-700 dark:bg-navy-950"
             role="dialog"
             aria-modal="false"
             aria-label="Ask about Baburam"
             id="chatbot-panel"
           >
-            <header className="flex items-center gap-3 border-b border-slate-200 bg-gradient-to-r from-navy-800 to-navy-700 px-4 py-3 text-white dark:border-navy-700 dark:from-navy-900 dark:to-navy-800">
-              <span className="grid h-8 w-8 place-items-center rounded-full bg-teal-500 text-navy-950" aria-hidden>
-                <Bot size={16} />
+            <header className="flex items-center gap-3 border-b border-white/10 bg-gradient-to-r from-coral-500 to-coral-600 px-4 py-3.5 text-white">
+              <span className="grid h-9 w-9 place-items-center rounded-full bg-white text-coral-500" aria-hidden>
+                <Bot size={18} />
               </span>
               <div className="min-w-0">
-                <p className="text-sm font-bold leading-tight">Ask about Baburam</p>
-                <p className="text-[11px] text-slate-200/80">
+                <p className="text-sm font-bold leading-tight">Ask About Baburam</p>
+                <p className="text-[11px] text-white/80">
                   Answers come from his CV &amp; portfolio
                 </p>
               </div>
@@ -138,7 +150,7 @@ export function Chatbot() {
                   <div
                     className={`max-w-[85%] whitespace-pre-wrap rounded-2xl px-3 py-2 leading-relaxed shadow-sm ${
                       m.from === "user"
-                        ? "rounded-br-sm bg-navy-800 text-white dark:bg-teal-500 dark:text-navy-950"
+                        ? "rounded-br-sm bg-coral-500 text-white"
                         : "rounded-bl-sm border border-slate-200 bg-white text-slate-800 dark:border-navy-700 dark:bg-navy-900 dark:text-slate-100"
                     }`}
                   >
@@ -165,7 +177,7 @@ export function Chatbot() {
                         key={s}
                         type="button"
                         onClick={() => send(s)}
-                        className="rounded-full border border-slate-200 bg-white px-2.5 py-1 text-[11px] text-slate-600 transition-colors hover:border-teal-400 hover:text-navy-800 dark:border-navy-700 dark:bg-navy-900 dark:text-slate-300 dark:hover:text-white"
+                        className="rounded-full border border-slate-200 bg-white px-2.5 py-1 text-[11px] text-slate-600 transition-colors hover:border-coral-300 hover:text-coral-600 dark:border-navy-700 dark:bg-navy-900 dark:text-slate-300 dark:hover:text-white"
                       >
                         {s}
                       </button>
@@ -193,12 +205,12 @@ export function Chatbot() {
                 maxLength={MAX_INPUT}
                 placeholder="Ask about skills, projects, experience…"
                 autoComplete="off"
-                className="flex-1 rounded-lg border border-slate-200 bg-white px-3 py-2 text-sm outline-none focus:border-teal-500 focus:ring-2 focus:ring-teal-500/20 dark:border-navy-700 dark:bg-navy-900 dark:text-slate-100"
+                className="flex-1 rounded-xl border border-slate-200 bg-white px-3 py-2 text-sm outline-none focus:border-coral-400 focus:ring-2 focus:ring-coral-500/20 dark:border-navy-700 dark:bg-navy-900 dark:text-slate-100"
               />
               <button
                 type="submit"
                 disabled={busy || !input.trim()}
-                className="inline-flex h-9 w-9 items-center justify-center rounded-lg bg-navy-800 text-white transition-colors hover:bg-navy-900 disabled:opacity-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-500 focus-visible:ring-offset-2 dark:bg-teal-500 dark:text-navy-950 dark:hover:bg-teal-400"
+                className="inline-flex h-9 w-9 items-center justify-center rounded-xl bg-coral-500 text-white transition-colors hover:bg-coral-600 disabled:opacity-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-coral-400 focus-visible:ring-offset-2"
                 aria-label="Send"
               >
                 <Send size={14} aria-hidden />

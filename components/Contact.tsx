@@ -20,20 +20,13 @@ import { Section } from "./Section";
 type FormState = {
   name: string;
   email: string;
-  subject: string;
   message: string;
   website: string;
 };
 
 type Status = "idle" | "loading" | "success" | "error";
 
-const INITIAL: FormState = {
-  name: "",
-  email: "",
-  subject: "",
-  message: "",
-  website: "",
-};
+const INITIAL: FormState = { name: "", email: "", message: "", website: "" };
 
 export function Contact() {
   const [form, setForm] = useState<FormState>(INITIAL);
@@ -48,8 +41,6 @@ export function Contact() {
     if (!form.email.trim()) e.email = "Please enter your email.";
     else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email))
       e.email = "Please enter a valid email address.";
-    if (!form.subject.trim()) e.subject = "Please enter a subject.";
-    else if (form.subject.length > 150) e.subject = "Subject is too long.";
     if (!form.message.trim() || form.message.length < 10)
       e.message = "Message should be at least 10 characters.";
     else if (form.message.length > 5000)
@@ -77,9 +68,7 @@ export function Contact() {
     } catch (err) {
       setStatus("error");
       setServerMsg(
-        err instanceof Error
-          ? err.message
-          : "Unable to send. Email me directly.",
+        err instanceof Error ? err.message : "Unable to send. Email me directly.",
       );
     }
   };
@@ -88,71 +77,22 @@ export function Contact() {
     <Section
       id="contact"
       eyebrow="Contact"
-      title="Let's talk about your data team"
-      intro="Available for Data Analyst, Business Intelligence Analyst, and Business Analyst roles across Canada — remote, hybrid, or on-site."
+      title="Let's Work Together"
+      intro="Have a project or opportunity? I'd love to hear from you. Available for Data Analyst, BI Analyst, and Business Analyst roles across Canada."
     >
       <div className="grid gap-6 lg:grid-cols-5">
-        <motion.div
-          initial={{ opacity: 0, y: 16 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-60px" }}
-          transition={{ duration: 0.45 }}
-          className="lg:col-span-2"
-        >
-          <div className="card h-full p-6">
-            <h3 className="text-base font-bold">Direct channels</h3>
-            <p className="mt-1 text-sm text-slate-600 dark:text-slate-400">
-              Fastest reach via email or LinkedIn.
-            </p>
-            <ul className="mt-5 space-y-4 text-sm">
-              <ContactRow
-                icon={<Mail size={16} />}
-                label="Email"
-                value={profile.email}
-                href={`mailto:${profile.email}`}
-              />
-              <ContactRow
-                icon={<Phone size={16} />}
-                label="Phone"
-                value={profile.phone}
-                href={`tel:${profile.phone.replace(/\s/g, "")}`}
-              />
-              <ContactRow
-                icon={<Linkedin size={16} />}
-                label="LinkedIn"
-                value="linkedin.com/in/baburam-adhikari"
-                href={profile.linkedin}
-              />
-              <ContactRow
-                icon={<GithubIcon size={16} />}
-                label="GitHub"
-                value="github.com/bbramadhikari"
-                href={profile.github}
-              />
-              <ContactRow
-                icon={<MapPin size={16} />}
-                label="Location"
-                value={profile.location}
-              />
-            </ul>
-          </div>
-        </motion.div>
-
+        {/* Form */}
         <motion.form
           initial={{ opacity: 0, y: 16 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-60px" }}
-          transition={{ duration: 0.45, delay: 0.05 }}
+          transition={{ duration: 0.45 }}
           onSubmit={onSubmit}
           noValidate
-          className="card p-6 lg:col-span-3"
+          className="card p-7 lg:col-span-3"
           aria-label="Contact form"
         >
-          <h3 className="text-base font-bold">Send a message</h3>
-          <p className="mt-1 text-sm text-slate-600 dark:text-slate-400">
-            I usually reply within 24 hours.
-          </p>
-
+          {/* Honeypot */}
           <div
             aria-hidden="true"
             className="absolute left-[-9999px] top-auto h-0 w-0 overflow-hidden"
@@ -165,15 +105,13 @@ export function Contact() {
               tabIndex={-1}
               autoComplete="off"
               value={form.website}
-              onChange={(e) =>
-                setForm((f) => ({ ...f, website: e.target.value }))
-              }
+              onChange={(e) => setForm((f) => ({ ...f, website: e.target.value }))}
             />
           </div>
 
-          <div className="mt-5 grid gap-4 sm:grid-cols-2">
+          <div className="grid gap-4 sm:grid-cols-2">
             <Field
-              label="Your name"
+              label="Your Name"
               name="name"
               autoComplete="name"
               maxLength={100}
@@ -184,7 +122,7 @@ export function Contact() {
               required
             />
             <Field
-              label="Your email"
+              label="Your Email"
               name="email"
               type="email"
               autoComplete="email"
@@ -198,26 +136,12 @@ export function Contact() {
           </div>
 
           <div className="mt-4">
-            <Field
-              label="Subject"
-              name="subject"
-              autoComplete="off"
-              maxLength={150}
-              value={form.subject}
-              onChange={(v) => setForm((f) => ({ ...f, subject: v }))}
-              error={errors.subject}
-              placeholder="Data Analyst opportunity at …"
-              required
-            />
-          </div>
-
-          <div className="mt-4">
             <label
               htmlFor="message"
               className="text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400"
             >
-              Message{" "}
-              <span className="text-red-500" aria-hidden="true">
+              Your Message{" "}
+              <span className="text-coral-500" aria-hidden="true">
                 *
               </span>
             </label>
@@ -230,15 +154,13 @@ export function Contact() {
               aria-invalid={Boolean(errors.message)}
               aria-describedby={errors.message ? "message-error" : undefined}
               value={form.message}
-              onChange={(e) =>
-                setForm((f) => ({ ...f, message: e.target.value }))
-              }
+              onChange={(e) => setForm((f) => ({ ...f, message: e.target.value }))}
               placeholder="Tell me a bit about the role, team, and stack…"
-              className="mt-1.5 w-full rounded-lg border border-slate-200 bg-white px-3 py-2.5 text-sm shadow-sm outline-none transition focus:border-teal-500 focus:ring-2 focus:ring-teal-500/20 dark:border-navy-700 dark:bg-navy-900 dark:text-slate-100"
+              className="mt-1.5 w-full rounded-xl border border-slate-200 bg-slate-50/60 px-3.5 py-3 text-sm shadow-sm outline-none transition focus:border-coral-400 focus:bg-white focus:ring-2 focus:ring-coral-500/20 dark:border-navy-700 dark:bg-navy-900 dark:text-slate-100"
             />
             <div className="mt-1 flex items-center justify-between text-xs">
               {errors.message ? (
-                <p id="message-error" className="text-red-500">
+                <p id="message-error" className="text-coral-700 dark:text-coral-300">
                   {errors.message}
                 </p>
               ) : (
@@ -256,31 +178,106 @@ export function Contact() {
             >
               {status === "loading" ? (
                 <>
-                  <Loader2 size={16} className="animate-spin" aria-hidden />{" "}
-                  Sending…
+                  <Loader2 size={16} className="animate-spin" aria-hidden /> Sending…
                 </>
               ) : (
                 <>
-                  <Send size={16} aria-hidden /> Send message
+                  <Send size={16} aria-hidden /> Send Message
                 </>
               )}
             </button>
             <p role="status" aria-live="polite" className="m-0">
               {status === "success" && (
-                <span className="inline-flex items-center gap-1.5 text-sm text-green-600 dark:text-green-400">
+                <span className="inline-flex items-center gap-1.5 text-sm text-emerald-600 dark:text-emerald-400">
                   <CheckCircle2 size={16} aria-hidden /> {serverMsg}
                 </span>
               )}
               {status === "error" && (
-                <span className="inline-flex items-center gap-1.5 text-sm text-red-500">
+                <span className="inline-flex items-center gap-1.5 text-sm text-coral-700 dark:text-coral-300">
                   <AlertCircle size={16} aria-hidden /> {serverMsg}
                 </span>
               )}
             </p>
           </div>
         </motion.form>
+
+        {/* Get in touch */}
+        <motion.div
+          initial={{ opacity: 0, y: 16 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-60px" }}
+          transition={{ duration: 0.45, delay: 0.05 }}
+          className="lg:col-span-2"
+        >
+          <div className="card h-full p-7">
+            <h3 className="text-base font-bold">Get in touch</h3>
+            <p className="mt-1 text-sm text-slate-500 dark:text-slate-400">
+              Fastest reach via email or LinkedIn — I usually reply within 24
+              hours.
+            </p>
+            <ul className="mt-5 space-y-2 text-sm">
+              <ContactRow
+                icon={<Mail size={16} />}
+                label="Email"
+                value={profile.email}
+                href={`mailto:${profile.email}`}
+              />
+              <ContactRow
+                icon={<Phone size={16} />}
+                label="Phone"
+                value={profile.phone}
+                href={`tel:${profile.phone.replace(/\s/g, "")}`}
+              />
+              <ContactRow
+                icon={<MapPin size={16} />}
+                label="Location"
+                value={profile.location}
+              />
+            </ul>
+
+            <div className="mt-6 border-t border-slate-100 pt-5 dark:border-navy-800">
+              <p className="mb-3 text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400">
+                Follow me
+              </p>
+              <div className="flex items-center gap-2.5">
+                <Social href={profile.linkedin} label="LinkedIn">
+                  <Linkedin size={18} />
+                </Social>
+                <Social href={profile.github} label="GitHub">
+                  <GithubIcon size={18} />
+                </Social>
+                <Social href={`mailto:${profile.email}`} label="Email" external={false}>
+                  <Mail size={18} />
+                </Social>
+              </div>
+            </div>
+          </div>
+        </motion.div>
       </div>
     </Section>
+  );
+}
+
+function Social({
+  href,
+  label,
+  external = true,
+  children,
+}: {
+  href: string;
+  label: string;
+  external?: boolean;
+  children: ReactNode;
+}) {
+  return (
+    <a
+      href={href}
+      aria-label={label}
+      {...(external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+      className="grid h-11 w-11 place-items-center rounded-2xl border border-slate-200 bg-white text-slate-500 transition-all hover:-translate-y-0.5 hover:border-coral-300 hover:text-coral-600 dark:border-navy-700 dark:bg-navy-900 dark:text-slate-400 dark:hover:text-coral-300"
+    >
+      {children}
+    </a>
   );
 }
 
@@ -297,14 +294,14 @@ function ContactRow({
 }) {
   const content = (
     <>
-      <span className="grid h-9 w-9 shrink-0 place-items-center rounded-lg bg-teal-500/10 text-teal-600 dark:text-teal-400">
+      <span className="grid h-10 w-10 shrink-0 place-items-center rounded-2xl bg-coral-50 text-coral-500 dark:bg-coral-500/10 dark:text-coral-400">
         {icon}
       </span>
       <div className="min-w-0">
         <p className="text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400">
           {label}
         </p>
-        <p className="truncate text-sm text-slate-700 dark:text-slate-200">
+        <p className="truncate text-sm font-medium text-slate-700 dark:text-slate-200">
           {value}
         </p>
       </div>
@@ -317,7 +314,7 @@ function ContactRow({
           href={href}
           target={href.startsWith("http") ? "_blank" : undefined}
           rel={href.startsWith("http") ? "noreferrer noopener" : undefined}
-          className="flex items-center gap-3 rounded-lg p-2 transition-colors hover:bg-slate-50 dark:hover:bg-navy-800/60"
+          className="flex items-center gap-3 rounded-xl p-2 transition-colors hover:bg-slate-50 dark:hover:bg-navy-800/60"
         >
           {content}
         </a>
@@ -360,7 +357,7 @@ function Field({
       >
         {label}
         {required && (
-          <span className="ml-0.5 text-red-500" aria-hidden="true">
+          <span className="ml-0.5 text-coral-500" aria-hidden="true">
             *
           </span>
         )}
@@ -377,10 +374,10 @@ function Field({
         value={value}
         onChange={(e) => onChange(e.target.value)}
         placeholder={placeholder}
-        className="mt-1.5 w-full rounded-lg border border-slate-200 bg-white px-3 py-2.5 text-sm shadow-sm outline-none transition focus:border-teal-500 focus:ring-2 focus:ring-teal-500/20 dark:border-navy-700 dark:bg-navy-900 dark:text-slate-100"
+        className="mt-1.5 w-full rounded-xl border border-slate-200 bg-slate-50/60 px-3.5 py-3 text-sm shadow-sm outline-none transition focus:border-coral-400 focus:bg-white focus:ring-2 focus:ring-coral-500/20 dark:border-navy-700 dark:bg-navy-900 dark:text-slate-100"
       />
       {error && (
-        <p id={errorId} className="mt-1 text-xs text-red-500">
+        <p id={errorId} className="mt-1 text-xs text-coral-700 dark:text-coral-300">
           {error}
         </p>
       )}

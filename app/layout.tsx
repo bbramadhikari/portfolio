@@ -2,8 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/ThemeProvider";
-import { Navbar } from "@/components/Navbar";
-import { Footer } from "@/components/Footer";
+import { Sidebar } from "@/components/Sidebar";
 import { Chatbot } from "@/components/Chatbot";
 import { profile } from "@/data/resume";
 
@@ -60,8 +59,11 @@ export const metadata: Metadata = {
   },
   robots: { index: true, follow: true },
   icons: {
-    icon: [{ url: "/favicon.svg", type: "image/svg+xml" }],
-    apple: "/favicon.svg",
+    icon: [
+      { url: "/favicon.ico", sizes: "any" },
+      { url: "/icon.png", type: "image/png", sizes: "512x512" },
+    ],
+    apple: "/apple-icon.png",
   },
   category: "technology",
 };
@@ -123,13 +125,16 @@ export default function RootLayout({
         <ThemeProvider>
           <a
             href="#main"
-            className="sr-only focus-visible:not-sr-only focus-visible:fixed focus-visible:top-2 focus-visible:left-2 focus-visible:z-50 focus-visible:rounded focus-visible:bg-navy-800 focus-visible:px-3 focus-visible:py-2 focus-visible:text-white"
+            className="sr-only focus-visible:not-sr-only focus-visible:fixed focus-visible:top-2 focus-visible:left-2 focus-visible:z-50 focus-visible:rounded focus-visible:bg-coral-500 focus-visible:px-3 focus-visible:py-2 focus-visible:text-white"
           >
             Skip to content
           </a>
-          <Navbar />
-          <main id="main">{children}</main>
-          <Footer />
+          <Sidebar />
+          <div className="lg:pl-[260px]">
+            <main id="main" className="px-4 pb-12 pt-20 sm:px-6 lg:px-8 lg:pt-6">
+              {children}
+            </main>
+          </div>
           <Chatbot />
         </ThemeProvider>
       </body>

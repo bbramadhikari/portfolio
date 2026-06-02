@@ -73,13 +73,18 @@ function projectSummary(title: string): string | null {
     x.title.toLowerCase().includes(title.toLowerCase())
   );
   if (!p) return null;
-  return [
+  const lines = [
     `**${p.title}**${p.published ? ` (${p.published})` : ""}`,
     p.description,
     `Tools: ${p.tools.join(", ")}.`,
     `Business value: ${p.value}`,
     `Key results: ${p.metrics.join(" · ")}.`,
-  ].join("\n");
+  ];
+  if (p.doi) lines.push(`Publication: ${p.doi}`);
+  if (p.pdf) lines.push(`Paper (PDF): ${p.pdf}`);
+  if (p.repos?.length)
+    lines.push(`Code: ${p.repos.map((r) => `${r.label} — ${r.url}`).join(" · ")}`);
+  return lines.join("\n");
 }
 
 export function getSuggestions(): string[] {
@@ -134,7 +139,7 @@ export function answer(question: string): string {
   }
 
   if (score(q, ["ecommerce", "e-commerce", "recommendation", "recommender", "amazon", "collaborative filtering"]) > 0) {
-    const s = projectSummary("E-Commerce Recommendation");
+    const s = projectSummary("E-Commerce Product Recommendation");
     if (s) m.push({ score: 9, reply: s });
   }
 
@@ -144,7 +149,17 @@ export function answer(question: string): string {
   }
 
   if (score(q, ["retinal", "retina", "cnn", "image", "vision", "computer vision", "cataract", "glaucoma"]) > 0) {
-    const s = projectSummary("Retinal Image");
+    const s = projectSummary("Retinal Fundus");
+    if (s) m.push({ score: 9, reply: s });
+  }
+
+  if (score(q, ["password manager", "biometric", "face id", "facial", "otp", "mfa", "multi-factor", "security", "authentication", "cybersecurity"]) > 0) {
+    const s = projectSummary("Password Manager");
+    if (s) m.push({ score: 9, reply: s });
+  }
+
+  if (score(q, ["drone", "lost in woods", "search and rescue", "rescue", "yolo", "yolov8", "missing person", "object detection", "aerial"]) > 0) {
+    const s = projectSummary("Lost in Woods");
     if (s) m.push({ score: 9, reply: s });
   }
 
@@ -161,11 +176,14 @@ export function answer(question: string): string {
     });
   }
 
-  if (score(q, ["education", "degree", "msc", "btech", "b.tech", "university", "algoma", "sardar patel", "school", "study", "studies"]) > 0) {
+  if (score(q, ["education", "degree", "msc", "masters", "master", "university", "algoma", "school", "study", "studies", "coursework"]) > 0) {
     m.push({
       score: 6,
       reply: education
-        .map((e) => `**${e.degree}** — ${e.school}, ${e.location} (${e.start} – ${e.end}). ${e.note}`)
+        .map(
+          (e) =>
+            `**${e.degree}** — ${e.school}, ${e.location} (${e.start} – ${e.end}). ${e.focus} Relevant coursework: ${e.coursework.join(", ")}.`,
+        )
         .join("\n\n"),
     });
   }

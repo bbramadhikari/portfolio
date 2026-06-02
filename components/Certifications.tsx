@@ -24,7 +24,7 @@ export function Certifications() {
                 transition={{ duration: 0.4, delay: i * 0.05 }}
                 className="card flex items-start gap-3 p-5"
               >
-                <span className="grid h-10 w-10 shrink-0 place-items-center rounded-lg bg-teal-500/10 text-teal-600 dark:text-teal-400">
+                <span className="grid h-10 w-10 shrink-0 place-items-center rounded-lg bg-coral-500/10 text-coral-600 dark:text-coral-400">
                   <CheckCircle2 size={20} />
                 </span>
                 <div>

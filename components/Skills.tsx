@@ -7,70 +7,75 @@ import {
   Cloud,
   Code2,
   Database,
-  LineChart,
+  PieChart,
+  ArrowUpRight,
   type LucideIcon,
 } from "lucide-react";
-import { skillCategories } from "@/data/resume";
+import Link from "next/link";
+import { skillHighlights } from "@/data/resume";
 import { Section } from "./Section";
 
 const iconMap: Record<string, LucideIcon> = {
-  Code2,
-  LineChart,
-  BarChart3,
   Database,
+  Code2,
+  BarChart3,
+  PieChart,
   Brain,
   Cloud,
+};
+
+// Per-skill icon accent so the grid feels like the reference's branded tiles.
+const accentMap: Record<string, string> = {
+  sky: "bg-sky-50 text-sky-600 dark:bg-sky-500/10 dark:text-sky-400",
+  amber: "bg-amber-50 text-amber-600 dark:bg-amber-500/10 dark:text-amber-400",
+  yellow:
+    "bg-yellow-50 text-yellow-600 dark:bg-yellow-500/10 dark:text-yellow-400",
+  blue: "bg-blue-50 text-blue-600 dark:bg-blue-500/10 dark:text-blue-400",
+  violet:
+    "bg-violet-50 text-violet-600 dark:bg-violet-500/10 dark:text-violet-400",
+  cyan: "bg-cyan-50 text-cyan-600 dark:bg-cyan-500/10 dark:text-cyan-400",
 };
 
 export function Skills() {
   return (
     <Section
       id="skills"
-      eyebrow="Technical Skills"
+      eyebrow="Skills Dashboard"
       title="The analytics toolkit I work with daily"
-      intro="From SQL and Python to Power BI and machine learning, here's the stack I use to clean data, build pipelines, and ship dashboards."
+      intro="From SQL and Python to Power BI, Tableau, and machine learning — the stack I use to clean data, build pipelines, and ship decision-ready dashboards."
+      action={
+        <Link
+          href="#projects"
+          className="inline-flex items-center gap-1.5 text-sm font-semibold text-coral-700 hover:gap-2.5 transition-all dark:text-coral-400"
+        >
+          See it applied <ArrowUpRight size={16} aria-hidden />
+        </Link>
+      }
     >
-      <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
-        {skillCategories.map((cat, i) => {
-          const Icon = iconMap[cat.icon] ?? Code2;
+      <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+        {skillHighlights.map((s, i) => {
+          const Icon = iconMap[s.icon] ?? Code2;
+          const accent = accentMap[s.accent] ?? accentMap.sky;
           return (
             <motion.article
-              key={cat.title}
+              key={s.name}
               initial={{ opacity: 0, y: 16 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-60px" }}
-              transition={{ duration: 0.45, delay: i * 0.05 }}
-              className="card p-6"
+              transition={{ duration: 0.4, delay: i * 0.05 }}
+              className="card card-hover group flex items-center gap-4 p-6"
             >
-              <div className="flex items-center gap-3">
-                <span className="grid h-10 w-10 place-items-center rounded-lg bg-teal-500/10 text-teal-600 dark:text-teal-400">
-                  <Icon size={20} />
-                </span>
-                <h3 className="text-base font-bold">{cat.title}</h3>
+              <span
+                className={`grid h-14 w-14 shrink-0 place-items-center rounded-2xl transition-transform group-hover:scale-110 ${accent}`}
+              >
+                <Icon size={26} />
+              </span>
+              <div>
+                <h3 className="text-base font-bold">{s.name}</h3>
+                <p className="mt-0.5 text-sm text-slate-500 dark:text-slate-400">
+                  {s.caption}
+                </p>
               </div>
-              <ul className="mt-5 space-y-3">
-                {cat.skills.map((s) => (
-                  <li key={s.name}>
-                    <div className="mb-1 flex items-center justify-between text-xs font-medium">
-                      <span className="text-slate-700 dark:text-slate-200">
-                        {s.name}
-                      </span>
-                      <span className="text-slate-500 dark:text-slate-400">
-                        {s.level}%
-                      </span>
-                    </div>
-                    <div className="h-1.5 w-full overflow-hidden rounded-full bg-slate-100 dark:bg-navy-800">
-                      <motion.div
-                        initial={{ width: 0 }}
-                        whileInView={{ width: `${s.level}%` }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 0.8, ease: "easeOut" }}
-                        className="h-full rounded-full bg-gradient-to-r from-navy-700 to-teal-400 dark:from-teal-500 dark:to-blue-400"
-                      />
-                    </div>
-                  </li>
-                ))}
-              </ul>
             </motion.article>
           );
         })}

@@ -47,18 +47,19 @@ baburam-portfolio/
 │       ├── chat/route.ts   # Edge runtime · rule-based answer engine
 │       └── contact/route.ts# Node runtime · validation, honeypot, rate-limit, Resend integration
 ├── components/
-│   ├── Navbar.tsx          # Sticky, blur on scroll, mobile menu w/ Esc-close + aria-expanded
-│   ├── Hero.tsx            # Animated dashboard card w/ Framer Motion bars
+│   ├── Sidebar.tsx         # Floating left dashboard nav · scroll-spy · mobile drawer · resume + socials
+│   ├── ThemeSwitch.tsx     # Labeled "Dark Mode" toggle row (used in sidebar)
+│   ├── Hero.tsx            # Dark dashboard hero · portrait panel + floating analytics cards (donut/sparkline/bars)
 │   ├── About.tsx           # Summary + quick facts card
-│   ├── Stats.tsx           # KPI achievements (500K+ records, +30%, –25%)
-│   ├── Skills.tsx          # 6 categories w/ animated progress bars
-│   ├── Experience.tsx      # Vertical timeline with strong bullet points
-│   ├── Projects.tsx        # Filterable cards (All / Data Analytics / BI / ML / NLP / CV)
+│   ├── Stats.tsx           # KPI bar overlapping hero (500K+, 30%, 20%, 4 projects)
+│   ├── Skills.tsx          # "Skills Dashboard" — 6 branded skill tiles
+│   ├── Experience.tsx      # Vertical timeline with coral indicators
+│   ├── Projects.tsx        # Filterable cards w/ themed thumbnails, DOI/PDF/GitHub links
 │   ├── Certifications.tsx  # IBM, Microsoft, Azure + Awards card
 │   ├── Education.tsx       # Algoma MSc + B.Tech
-│   ├── Contact.tsx         # Validated form, honeypot, 5000-char counter, ARIA error linkage
-│   ├── Chatbot.tsx         # Floating "Ask about Baburam" — Esc-close, focus-trap, ARIA log
-│   ├── Section.tsx, Footer.tsx, ThemeProvider.tsx, ThemeToggle.tsx
+│   ├── Contact.tsx         # "Let's Work Together" — validated form, honeypot, get-in-touch panel
+│   ├── Chatbot.tsx         # Floating coral "Ask About Baburam" AI assistant — Esc-close, ARIA log
+│   ├── Section.tsx, ThemeProvider.tsx, GithubIcon.tsx
 ├── data/resume.ts          # Single source of truth (CV-accurate)
 ├── lib/chatbot.ts          # Word-boundary keyword matcher (no LLM key required)
 ├── public/

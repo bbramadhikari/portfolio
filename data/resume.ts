@@ -9,6 +9,7 @@ export const profile = {
   linkedin: "https://linkedin.com/in/baburam-adhikari",
   github: "https://github.com/bbramadhikari",
   resumeUrl: "/Baburam_Adhikari_DataAnalyst_CV.pdf",
+  portrait: "/baburam.png",
 };
 
 export const about = {
@@ -144,7 +145,8 @@ export type ProjectCategory =
   | "BI"
   | "Machine Learning"
   | "NLP"
-  | "Computer Vision";
+  | "Computer Vision"
+  | "Security";
 
 export type Project = {
   title: string;
@@ -154,7 +156,13 @@ export type Project = {
   metrics: string[];
   category: ProjectCategory[];
   link?: string;
+  repos?: { label: string; url: string }[];
   published?: string;
+  doi?: string;
+  pdf?: string;
+  // Card-display metadata (Featured Projects grid)
+  accent?: "fraud" | "ecommerce" | "nlp" | "vision" | "security" | "drone";
+  headline?: { value: string; label: string };
 };
 
 export const projects: Project[] = [
@@ -180,10 +188,49 @@ export const projects: Project[] = [
       "Identified high-risk customer segments via behavioral anomaly scoring",
     ],
     category: ["Data Analytics", "Machine Learning"],
-    link: "https://github.com/bbramadhikari",
+    link: "https://github.com/bbramadhikari/banking_EDA",
+    accent: "fraud",
+    headline: { value: "3 models", label: "Benchmarked on P/R/F1" },
   },
   {
-    title: "E-Commerce Recommendation & Customer Insights",
+    title: "Password Manager with Biometric Authentication",
+    description:
+      "Full-stack secure password manager that layers facial recognition and email OTP on top of a master password for multi-factor authentication. Built with a Next.js client and a Django REST API; credentials are AES-encrypted and master passwords bcrypt-hashed before storage, with JWT-secured sessions and input validation against SQL injection and XSS.",
+    tools: [
+      "Next.js",
+      "React",
+      "TypeScript",
+      "Django REST",
+      "PostgreSQL",
+      "face-api.js",
+      "OpenCV",
+      "PyOTP",
+      "JWT",
+    ],
+    value:
+      "Removes the single-point-of-failure of a master password by requiring live biometric + OTP verification before any credential can be viewed — a model leading vendors are moving toward with passkeys.",
+    metrics: [
+      "Multi-factor auth: facial recognition (face_recognition / OpenCV) + time-based email OTP",
+      "AES-encrypted credential storage with bcrypt-hashed master passwords",
+      "JWT-secured Django REST API with SQL-injection & XSS input validation",
+    ],
+    category: ["Security", "Computer Vision"],
+    accent: "security",
+    headline: { value: "Face + OTP", label: "Multi-factor auth" },
+    repos: [
+      {
+        label: "Frontend",
+        url: "https://github.com/bbramadhikari/password-manager-frontend",
+      },
+      {
+        label: "Backend",
+        url: "https://github.com/bbramadhikari/password-manager-backend",
+      },
+    ],
+  },
+  {
+    title:
+      "Trust-Aware Generative Explanations for E-Commerce Product Recommendations",
     description:
       "Analyzed the Amazon 2023 e-commerce dataset to extract purchasing behavior, product-affinity patterns, and customer segmentation insights. Built a hybrid recommendation system combining collaborative filtering and content-based features.",
     tools: [
@@ -203,7 +250,10 @@ export const projects: Project[] = [
     ],
     category: ["Data Analytics", "Machine Learning"],
     published: "Published, ICAIII 2026",
+    doi: "https://doi.org/10.1109/ICAIII69475.2026.11521172",
     link: "https://github.com/bbramadhikari",
+    accent: "ecommerce",
+    headline: { value: "Hit Rate@K", label: "Hybrid recommender" },
   },
   {
     title: "Nepali Sentiment Analysis — NLP Insights",
@@ -219,9 +269,12 @@ export const projects: Project[] = [
     ],
     category: ["NLP", "Machine Learning"],
     link: "https://github.com/bbramadhikari",
+    accent: "nlp",
+    headline: { value: "73.88%", label: "Model Accuracy" },
   },
   {
-    title: "Retinal Image Classification — Predictive Analytics",
+    title:
+      "Lightweight CNN for Multi-Class Classification of Retinal Fundus Images",
     description:
       "Designed a lightweight CNN to classify four retinal conditions (Cataract, Diabetic Retinopathy, Glaucoma, Normal). Conducted rigorous model evaluation using confusion matrices, ROC/AUC, and class-wise performance reporting.",
     tools: ["Python", "TensorFlow / Keras", "CNN", "Scikit-learn"],
@@ -234,15 +287,60 @@ export const projects: Project[] = [
     ],
     category: ["Computer Vision", "Machine Learning"],
     published: "Published, SNPD 2025",
+    pdf: "/SNPD2025_Lightweight_CNN_Retinal_Fundus.pdf",
     link: "https://github.com/bbramadhikari",
+    accent: "vision",
+    headline: { value: "91.14%", label: "Model Precision" },
+  },
+  {
+    title: "Lost in Woods — AI Drone Search & Rescue",
+    description:
+      "AI-driven search-and-rescue platform that detects missing people in aerial drone imagery of dense forest using a YOLOv8 object-detection model. Built as two web apps: a public portal for reporting missing persons and an admin dashboard that runs detection on uploaded drone images and emails reporters when a confident match is found.",
+    tools: [
+      "Python",
+      "Flask",
+      "YOLOv8",
+      "OpenCV",
+      "PostgreSQL",
+      "AWS S3",
+      "SMTP",
+    ],
+    value:
+      "Replaces blind, manpower-heavy manual sweeps with automated aerial detection and precise location data — giving rescue teams a head start and shrinking search time across large, hard-to-reach areas.",
+    metrics: [
+      "Custom-trained YOLOv8 model detects humans in dense-foliage drone imagery",
+      "Two-app design: public missing-person reporting portal + admin detection dashboard",
+      "Automated SMTP email alerts to reporters on confident matches (<5s/image target)",
+    ],
+    category: ["Computer Vision", "Machine Learning"],
+    accent: "drone",
+    headline: { value: "YOLOv8", label: "Aerial human detection" },
+    link: "https://github.com/bbramadhikari/human-detection-with-drone-image",
   },
 ];
 
 export const stats = [
-  { label: "Records analyzed", value: "500K+", sub: "Pandas + SQL pipelines", icon: "Database" },
-  { label: "Data quality lift", value: "30%", sub: "@ Leapfrog Technology", icon: "TrendingUp" },
-  { label: "Manual reporting cut", value: "20–25%", sub: "Excel + Power BI automation", icon: "Clock" },
-  { label: "BI dashboards shipped", value: "10+", sub: "Power BI · Tableau · Looker", icon: "BarChart3" },
+  { value: "500K+", label: "Records Analyzed", sub: "Across multiple datasets", icon: "Database" },
+  { value: "30%", label: "Data Quality Improvement", sub: "Enhanced accuracy & reliability", icon: "TrendingUp" },
+  { value: "20%", label: "Reporting Time Reduction", sub: "Through automation & ETL", icon: "Clock" },
+  { value: "6", label: "Featured Projects", sub: "ML, NLP, Vision & Security", icon: "FileText" },
+];
+
+// Curated, recruiter-facing skill highlights for the "Skills Dashboard" grid.
+export type SkillHighlight = {
+  name: string;
+  caption: string;
+  icon: string;
+  accent: string; // tailwind text/border accent class for the icon chip
+};
+
+export const skillHighlights: SkillHighlight[] = [
+  { name: "SQL", caption: "Advanced Querying", icon: "Database", accent: "sky" },
+  { name: "Python", caption: "Data Analysis & Automation", icon: "Code2", accent: "amber" },
+  { name: "Power BI", caption: "Dashboard & Reporting", icon: "BarChart3", accent: "yellow" },
+  { name: "Tableau", caption: "Data Viz & Storytelling", icon: "PieChart", accent: "blue" },
+  { name: "Machine Learning", caption: "ML Models & Algorithms", icon: "Brain", accent: "violet" },
+  { name: "Azure", caption: "Cloud & Data Engineering", icon: "Cloud", accent: "cyan" },
 ];
 
 export const certifications = [
@@ -272,18 +370,17 @@ export const education = [
   {
     degree: "Master of Science, Computer Science",
     school: "Algoma University",
-    location: "Sault Ste. Marie, ON",
+    location: "Sault Ste. Marie, ON, Canada",
     start: "Jan 2025",
     end: "Dec 2025",
-    note: "Relevant coursework: Data Analytics, Machine Learning, Database Systems, Statistical Methods.",
-  },
-  {
-    degree: "B.Tech, Computer Science & Engineering",
-    school: "Sardar Patel University",
-    location: "India",
-    start: "Jul 2018",
-    end: "Jun 2022",
-    note: "Foundations in algorithms, databases, software engineering, and applied statistics.",
+    focus:
+      "Graduate studies focused on data analytics, machine learning, database systems, and business intelligence — forming the technical foundation behind my analytical and data-driven problem-solving approach. Coursework combined statistical analysis, predictive modeling, data visualization, and modern data engineering practices with hands-on industry-oriented projects. Gained practical experience working with SQL, Python, ETL pipelines, dashboard development, exploratory data analysis (EDA), and machine learning workflows to transform complex datasets into actionable business insights. The program emphasized both technical depth and real-world application, strengthening my ability to bridge data, technology, and strategic decision-making.",
+    coursework: [
+      "Data Analytics",
+      "Machine Learning",
+      "Database Systems",
+      "Statistical Methods",
+    ],
   },
 ];
 

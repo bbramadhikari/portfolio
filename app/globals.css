@@ -4,21 +4,21 @@
 
 @layer base {
   :root {
-    --bg: 255 255 255;
+    --bg: 241 245 249; /* slate-100 page canvas */
+    --surface: 255 255 255; /* white cards */
     --fg: 15 26 43;
     --muted: 100 116 139;
-    --card: 255 255 255;
     --border: 226 232 240;
-    --accent: 20 184 166;
+    --accent: 255 90 95; /* coral-500 */
   }
 
   .dark {
-    --bg: 8 15 28;
+    --bg: 8 15 28; /* navy-950 */
+    --surface: 17 28 46;
     --fg: 226 232 240;
     --muted: 148 163 184;
-    --card: 15 26 43;
     --border: 30 41 59;
-    --accent: 45 212 191;
+    --accent: 255 123 128; /* coral-400 */
   }
 
   html {
@@ -34,18 +34,20 @@
   }
 
   ::selection {
-    background: rgb(var(--accent) / 0.25);
+    background: rgb(var(--accent) / 0.22);
     color: rgb(var(--fg));
   }
 
   :focus-visible {
     outline: 2px solid rgb(var(--accent));
     outline-offset: 2px;
-    border-radius: 6px;
+    border-radius: 8px;
   }
 
   @media (prefers-reduced-motion: reduce) {
-    *, *::before, *::after {
+    *,
+    *::before,
+    *::after {
       animation-duration: 0.01ms !important;
       animation-iteration-count: 1 !important;
       transition-duration: 0.01ms !important;
@@ -55,62 +57,90 @@
 }
 
 @layer components {
-  .container-px {
-    @apply mx-auto w-full max-w-7xl px-5 sm:px-8 lg:px-12;
-  }
-
+  /* ---- Layout rhythm ---- */
   .section {
-    @apply py-20 sm:py-28 scroll-mt-20;
-  }
-
-  .section-title {
-    @apply text-3xl sm:text-4xl font-bold tracking-tight;
+    /* Larger offset on mobile so anchored headings clear the fixed top bar. */
+    @apply scroll-mt-24 py-12 sm:py-16 lg:scroll-mt-8;
   }
 
   .section-eyebrow {
-    @apply text-sm font-semibold uppercase tracking-[0.18em] text-teal-500;
+    @apply text-xs font-bold uppercase tracking-[0.2em] text-coral-700 dark:text-coral-400;
   }
 
+  .section-title {
+    @apply text-2xl font-extrabold tracking-tight sm:text-3xl;
+  }
+
+  /* ---- Surfaces ---- */
   .card {
-    background-color: rgb(var(--card));
+    background-color: rgb(var(--surface));
     border: 1px solid rgb(var(--border));
-    @apply rounded-2xl shadow-sm hover:shadow-md transition-shadow duration-300;
+    @apply rounded-3xl shadow-soft transition-all duration-300;
   }
 
+  .card-hover {
+    @apply hover:-translate-y-1 hover:shadow-lift;
+  }
+
+  .glass {
+    background-color: rgb(255 255 255 / 0.1);
+    @apply rounded-2xl border border-white/15 backdrop-blur-md;
+  }
+
+  .glass-light {
+    @apply rounded-2xl border border-white/70 bg-white/80 shadow-soft backdrop-blur-md dark:border-white/10 dark:bg-navy-900/70;
+  }
+
+  /* ---- Buttons ---- */
   .btn-primary {
-    @apply inline-flex items-center justify-center gap-2 rounded-lg bg-navy-700 px-5 py-2.5 text-sm font-semibold text-white shadow-sm transition-all hover:bg-navy-800 hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-500 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:bg-teal-500 dark:text-navy-950 dark:hover:bg-teal-400 dark:focus-visible:ring-offset-navy-950;
+    @apply inline-flex items-center justify-center gap-2 rounded-xl bg-coral-500 px-5 py-3 text-sm font-semibold text-white shadow-glow transition-all hover:-translate-y-0.5 hover:bg-coral-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-coral-400 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:focus-visible:ring-offset-navy-950;
   }
 
   .btn-ghost {
-    @apply inline-flex items-center justify-center gap-2 rounded-lg border border-slate-300 bg-white px-5 py-2.5 text-sm font-semibold text-navy-800 transition-all hover:bg-slate-50 hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-500 focus-visible:ring-offset-2 dark:border-navy-700 dark:bg-transparent dark:text-slate-200 dark:hover:bg-navy-800 dark:focus-visible:ring-offset-navy-950;
+    @apply inline-flex items-center justify-center gap-2 rounded-xl border border-slate-200 bg-white px-5 py-3 text-sm font-semibold text-navy-800 shadow-soft transition-all hover:-translate-y-0.5 hover:border-coral-300 hover:text-coral-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-coral-400 focus-visible:ring-offset-2 dark:border-navy-700 dark:bg-navy-900 dark:text-slate-100 dark:hover:border-coral-400/60 dark:hover:text-coral-300 dark:focus-visible:ring-offset-navy-950;
+  }
+
+  .btn-dark {
+    @apply inline-flex items-center justify-center gap-2 rounded-xl border border-white/15 bg-white/10 px-5 py-3 text-sm font-semibold text-white backdrop-blur-md transition-all hover:-translate-y-0.5 hover:bg-white/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/40;
   }
 
   .chip {
     @apply inline-flex items-center rounded-full border border-slate-200 bg-slate-50 px-2.5 py-1 text-xs font-medium text-navy-700 dark:border-navy-700 dark:bg-navy-800/60 dark:text-slate-200;
   }
 
+  /* ---- Decorative ---- */
   .grid-bg {
     background-image:
-      linear-gradient(to right, rgba(15, 26, 43, 0.06) 1px, transparent 1px),
-      linear-gradient(to bottom, rgba(15, 26, 43, 0.06) 1px, transparent 1px);
-    background-size: 32px 32px;
-  }
-
-  .dark .grid-bg {
-    background-image:
-      linear-gradient(to right, rgba(148, 163, 184, 0.08) 1px, transparent 1px),
-      linear-gradient(to bottom, rgba(148, 163, 184, 0.08) 1px, transparent 1px);
+      linear-gradient(to right, rgba(148, 163, 184, 0.12) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(148, 163, 184, 0.12) 1px, transparent 1px);
+    background-size: 36px 36px;
   }
 
   .gradient-text {
-    background: linear-gradient(90deg, #2563eb 0%, #14b8a6 60%, #2dd4bf 100%);
+    background: linear-gradient(95deg, #ff5a5f 0%, #ff8a5f 55%, #ffb15a 100%);
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
   }
+
+  .hero-aurora {
+    background:
+      radial-gradient(60% 60% at 78% 18%, rgba(255, 90, 95, 0.32) 0%, transparent 60%),
+      radial-gradient(50% 50% at 12% 88%, rgba(45, 99, 144, 0.4) 0%, transparent 60%);
+  }
 }
 
-::-webkit-scrollbar { width: 10px; height: 10px; }
-::-webkit-scrollbar-track { background: transparent; }
-::-webkit-scrollbar-thumb { background: rgb(var(--border)); border-radius: 8px; }
-::-webkit-scrollbar-thumb:hover { background: rgb(var(--accent) / 0.6); }
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: rgb(var(--border));
+  border-radius: 8px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgb(var(--accent) / 0.6);
+}

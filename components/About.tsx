@@ -40,7 +40,7 @@ export function About() {
                 key={h}
                 className="flex items-start gap-2 rounded-lg border border-slate-200 bg-white p-3 text-sm dark:border-navy-800 dark:bg-navy-900/40"
               >
-                <BadgeCheck className="mt-0.5 shrink-0 text-teal-500" size={18} />
+                <BadgeCheck className="mt-0.5 shrink-0 text-coral-500" size={18} />
                 <span className="text-slate-700 dark:text-slate-300">{h}</span>
               </li>
             ))}
@@ -55,7 +55,7 @@ export function About() {
           className="lg:col-span-2"
         >
           <div className="card p-6">
-            <h3 className="text-sm font-semibold uppercase tracking-wider text-teal-500">
+            <h3 className="text-sm font-semibold uppercase tracking-wider text-coral-700 dark:text-coral-400">
               Quick facts
             </h3>
             <ul className="mt-4 space-y-4 text-sm">
@@ -98,7 +98,7 @@ function Fact({
 }) {
   return (
     <li className="flex items-start gap-3">
-      <span className="grid h-8 w-8 shrink-0 place-items-center rounded-md bg-teal-500/10 text-teal-600 dark:text-teal-400">
+      <span className="grid h-8 w-8 shrink-0 place-items-center rounded-md bg-coral-500/10 text-coral-600 dark:text-coral-400">
         {icon}
       </span>
       <div>
