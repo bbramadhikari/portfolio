@@ -8,7 +8,7 @@ export const profile = {
   email: "psnbabu5@gmail.com",
   linkedin: "https://linkedin.com/in/baburam-adhikari",
   github: "https://github.com/bbramadhikari",
-  resumeUrl: "/Baburam_Adhikari_DataAnalyst_CV.pdf",
+  resumeUrl: "/Baburam_Adhikari_Resume.pdf",
   portrait: "/baburam.png",
 };
 
