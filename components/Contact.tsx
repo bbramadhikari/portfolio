@@ -78,7 +78,7 @@ export function Contact() {
       id="contact"
       eyebrow="Contact"
       title="Let's Work Together"
-      intro="Have a project or opportunity? I'd love to hear from you. Available for Data Analyst, BI Analyst, and Business Analyst roles across Canada."
+      intro="Have a project, a data problem, or a question? Send me a message and I'll get back to you within a day."
     >
       <div className="grid gap-6 lg:grid-cols-5">
         {/* Form */}

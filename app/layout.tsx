@@ -105,7 +105,6 @@ const personJsonLd = {
   ],
   alumniOf: [
     { "@type": "CollegeOrUniversity", name: "Algoma University" },
-    { "@type": "CollegeOrUniversity", name: "Sardar Patel University" },
   ],
 };
 

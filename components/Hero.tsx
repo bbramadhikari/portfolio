@@ -1,9 +1,7 @@
 "use client";
 
-import { useState } from "react";
 import { motion } from "framer-motion";
 import Link from "next/link";
-import Image from "next/image";
 import { ArrowRight, Download, MapPin, Send, TrendingUp } from "lucide-react";
 import { profile } from "@/data/resume";
 
@@ -48,8 +46,9 @@ export function Hero() {
               <span className="gradient-text">Business Decisions</span>
             </h2>
             <p className="mt-4 max-w-xl text-sm leading-relaxed text-slate-300 sm:text-base">
-              I transform raw data into meaningful insights that drive strategic
-              business growth and operational excellence.
+              I&apos;m a data analyst. I take raw, messy data and turn it into
+              dashboards and reports that help teams make decisions without
+              second-guessing the numbers.
             </p>
 
             <div className="mt-8 flex flex-wrap gap-3">
@@ -65,8 +64,8 @@ export function Hero() {
             </div>
 
             <p className="mt-7 inline-flex items-center gap-2 text-xs font-medium text-slate-400">
-              <MapPin size={14} aria-hidden /> {profile.location} · Open to Data
-              Analyst roles
+              <MapPin size={14} aria-hidden /> {profile.location} · Data Analyst
+              &amp; BI
             </p>
           </motion.div>
 
@@ -88,21 +87,17 @@ export function Hero() {
 function HeroVisual() {
   return (
     <div className="relative aspect-square w-full">
-      {/* Portrait — cutout floats directly over the hero background */}
-      <div className="absolute inset-x-6 inset-y-2">
-        <Portrait />
-        <div className="absolute inset-x-0 bottom-0 p-4 text-center">
-          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-coral-400">
-            Data Analyst
-          </p>
-        </div>
-      </div>
+      {/* Ambient glow anchoring the composition */}
+      <div
+        className="absolute left-1/2 top-1/2 h-56 w-56 -translate-x-1/2 -translate-y-1/2 rounded-full bg-coral-500/20 blur-3xl"
+        aria-hidden
+      />
 
-      {/* Floating card: Data Quality donut */}
+      {/* Top-left: Data Quality donut */}
       <motion.div
         animate={{ y: [0, -8, 0] }}
         transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
-        className="glass absolute -left-2 top-10 w-36 p-3 text-white shadow-lift"
+        className="glass absolute left-0 top-2 z-20 w-36 -rotate-3 p-3 text-white shadow-lift"
       >
         <p className="text-[10px] font-medium leading-tight text-slate-200">
           Data Quality
@@ -114,7 +109,7 @@ function HeroVisual() {
         </div>
       </motion.div>
 
-      {/* Floating card: Insights Generated sparkline */}
+      {/* Top-right: Insights Generated sparkline */}
       <motion.div
         animate={{ y: [0, -10, 0] }}
         transition={{
@@ -123,20 +118,40 @@ function HeroVisual() {
           ease: "easeInOut",
           delay: 0.6,
         }}
-        className="glass absolute -right-2 top-4 w-44 p-3 text-white shadow-lift"
+        className="glass absolute right-0 top-16 z-30 w-44 rotate-2 p-3 text-white shadow-lift"
       >
         <div className="flex items-center justify-between">
           <p className="text-[11px] font-semibold text-slate-100">
-            Insights Generated
+            Records Analysed
           </p>
           <span className="rounded-md bg-coral-500/90 px-1.5 py-0.5 text-[10px] font-bold">
-            +24%
+            500K+
           </span>
         </div>
         <Sparkline />
       </motion.div>
 
-      {/* Floating card: Reports Automated bars */}
+      {/* Center accent chip — ties the cluster together */}
+      <motion.div
+        animate={{ y: [0, -6, 0] }}
+        transition={{
+          duration: 5.5,
+          repeat: Infinity,
+          ease: "easeInOut",
+          delay: 0.9,
+        }}
+        className="glass absolute left-1/2 top-1/2 z-10 flex -translate-x-1/2 -translate-y-1/2 items-center gap-2 rounded-full px-3.5 py-2 text-white shadow-lift"
+      >
+        <span className="relative flex h-2.5 w-2.5">
+          <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-coral-400 opacity-75" />
+          <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-coral-500" />
+        </span>
+        <span className="text-[11px] font-semibold tracking-wide">
+          IBM Data Analyst Certified
+        </span>
+      </motion.div>
+
+      {/* Bottom: Reports Automated bars */}
       <motion.div
         animate={{ y: [0, -9, 0] }}
         transition={{
@@ -145,10 +160,10 @@ function HeroVisual() {
           ease: "easeInOut",
           delay: 1.1,
         }}
-        className="glass absolute -right-1 bottom-6 w-40 p-3 text-white shadow-lift"
+        className="glass absolute bottom-2 left-1/2 z-20 w-40 -translate-x-1/2 -rotate-2 p-3 text-white shadow-lift"
       >
         <p className="text-[11px] font-semibold text-slate-100">
-          Reports Automated
+          Less Manual Reporting
         </p>
         <div className="mt-1 flex items-baseline gap-1">
           <span className="text-2xl font-extrabold">20%</span>
@@ -164,37 +179,6 @@ function HeroVisual() {
           ))}
         </div>
       </motion.div>
-    </div>
-  );
-}
-
-function Portrait() {
-  const [failed, setFailed] = useState(false);
-
-  if (profile.portrait && !failed) {
-    return (
-      <Image
-        src={profile.portrait}
-        alt={`${profile.name} — Data Analyst`}
-        fill
-        priority
-        sizes="(max-width: 1024px) 80vw, 400px"
-        onError={() => setFailed(true)}
-        className="object-cover object-[50%_22%]"
-      />
-    );
-  }
-
-  // Fallback: brand logo when no photo is present.
-  return (
-    <div className="absolute inset-0 grid place-items-center">
-      <Image
-        src="/logo.png"
-        alt={`${profile.name} logo`}
-        width={150}
-        height={150}
-        className="h-32 w-32 object-contain opacity-90"
-      />
     </div>
   );
 }

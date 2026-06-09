@@ -11,7 +11,7 @@ export function About() {
     <Section
       id="about"
       eyebrow="About Me"
-      title="Data Analyst focused on measurable business impact"
+      title="A little about how I work"
     >
       <div className="grid items-start gap-10 lg:grid-cols-5">
         <motion.div
@@ -25,13 +25,12 @@ export function About() {
             {about.summary}
           </p>
           <p className="mt-4 text-base leading-relaxed text-slate-700 dark:text-slate-300">
-            I am currently based in {profile.location}, finishing my MSc in
-            Computer Science and actively seeking Data Analyst, Business
-            Intelligence Analyst, or Business Analyst opportunities across
-            Canada. I bring a strong mix of SQL fluency, Python analytics,
-            Power BI dashboarding, and stakeholder communication — and I focus
-            on translating ambiguous business questions into structured
-            analytics deliverables.
+            I&apos;m a data analyst based in {profile.location}, with an MSc in
+            Computer Science from Algoma University. Day to day I work in SQL,
+            Python, and Power BI, and I spend a fair bit of time talking to
+            stakeholders to figure out what they actually need. I&apos;m at my
+            best taking a vague business question and turning it into a clear
+            answer — a query, a dashboard, or a report someone can act on.
           </p>
 
           <ul className="mt-6 grid gap-3 sm:grid-cols-2">
@@ -62,12 +61,12 @@ export function About() {
               <Fact
                 icon={<MapPin size={16} />}
                 label="Location"
-                value="Edmonton, AB · Open to relocate across Canada"
+                value="Edmonton, AB, Canada"
               />
               <Fact
                 icon={<GraduationCap size={16} />}
                 label="Education"
-                value="MSc Computer Science (Algoma University, ON) · B.Tech CSE"
+                value="MSc Computer Science — Algoma University, ON"
               />
               <Fact
                 icon={<BadgeCheck size={16} />}

@@ -11,7 +11,7 @@ const STARTERS = [
   "What data tools does Baburam use?",
   "What Power BI experience does he have?",
   "Tell me about his fraud analytics project",
-  "Is he suitable for a Data Analyst role?",
+  "What does Baburam do as a data analyst?",
 ];
 
 const MAX_INPUT = 500;
@@ -23,7 +23,7 @@ export function Chatbot() {
   const [messages, setMessages] = useState<Msg[]>([
     {
       from: "bot",
-      text: "Hi! I'm trained on Baburam's CV, projects and skills. Ask me anything below.",
+      text: "Hi! I answer questions straight from Baburam's CV, projects, and skills. Ask me anything below.",
     },
   ]);
   const listRef = useRef<HTMLDivElement>(null);
@@ -99,7 +99,7 @@ export function Chatbot() {
             {open ? "Close chat" : "Ask About Baburam"}
           </span>
           <span className="block text-[11px] font-medium text-white/80">
-            AI Assistant
+            CV Q&amp;A
           </span>
         </span>
       </button>
@@ -128,7 +128,7 @@ export function Chatbot() {
                 </p>
               </div>
               <span className="ml-auto inline-flex items-center gap-1 rounded-full bg-white/10 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wider">
-                <Sparkles size={10} aria-hidden /> AI
+                <Sparkles size={10} aria-hidden /> CV
               </span>
             </header>
 

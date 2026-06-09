@@ -2,23 +2,23 @@ export const profile = {
   name: "Baburam Adhikari",
   title: "Data Analyst | SQL | Python | Power BI | Business Intelligence",
   tagline:
-    "Turning complex, messy data into clear, decision-ready insights that move business KPIs.",
+    "I clean up messy data and turn it into dashboards and reports teams can actually act on.",
   location: "Edmonton, AB, Canada",
   phone: "+1-705-987-5536",
   email: "psnbabu5@gmail.com",
   linkedin: "https://linkedin.com/in/baburam-adhikari",
   github: "https://github.com/bbramadhikari",
   resumeUrl: "/Baburam_Adhikari_Resume.pdf",
-  portrait: "/baburam.png",
+  portrait: "",
 };
 
 export const about = {
-  summary: `Data Analyst with hands-on experience delivering business insights through SQL, Python, and BI dashboards across operational, customer, and financial datasets. IBM Data Analyst certified and currently completing an MSc in Computer Science at Algoma University (Canada), with proven results: improved data quality by 30%, reduced manual reporting time by 20–25%, and built automated ETL workflows that streamlined stakeholder reporting.`,
+  summary: `I'm a data analyst who works mostly in SQL, Python, and Power BI — across operational, customer, and financial data. I'm IBM Data Analyst certified and hold an MSc in Computer Science from Algoma University. In my last role I cleaned and analysed 500K+ records, improved data quality by about 30%, cut manual reporting time by 20–25%, and built ETL workflows that took the repetitive work out of stakeholder reporting.`,
   highlights: [
     "MSc in Computer Science — Algoma University, Ontario",
     "IBM Data Analyst Professional Certificate (2025)",
     "2+ years of analytics experience across product, ops & finance datasets",
-    "Authorised to work in Canada and open to Data Analyst / BI Analyst / Business Analyst roles",
+    "Specialise in SQL, Python, Power BI, and automated ETL & reporting workflows",
   ],
 };
 
@@ -374,7 +374,7 @@ export const education = [
     start: "Jan 2025",
     end: "Dec 2025",
     focus:
-      "Graduate studies focused on data analytics, machine learning, database systems, and business intelligence — forming the technical foundation behind my analytical and data-driven problem-solving approach. Coursework combined statistical analysis, predictive modeling, data visualization, and modern data engineering practices with hands-on industry-oriented projects. Gained practical experience working with SQL, Python, ETL pipelines, dashboard development, exploratory data analysis (EDA), and machine learning workflows to transform complex datasets into actionable business insights. The program emphasized both technical depth and real-world application, strengthening my ability to bridge data, technology, and strategic decision-making.",
+      "Graduate coursework in data analytics, machine learning, database systems, and statistics, with hands-on projects in SQL, Python, ETL, and dashboard development. Most projects ran a real dataset end-to-end — cleaning, analysis, modelling, and a final visual report.",
     coursework: [
       "Data Analytics",
       "Machine Learning",

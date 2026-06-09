@@ -10,8 +10,8 @@ export function Experience() {
     <Section
       id="experience"
       eyebrow="Experience Timeline"
-      title="Roles where I shipped analytics that moved KPIs"
-      intro="Hands-on Data & Business Analyst experience across product, operations, and finance datasets."
+      title="Where I've worked"
+      intro="Data and business analyst roles across product, operations, and finance teams."
     >
       <div className="relative">
         {/* Timeline spine */}

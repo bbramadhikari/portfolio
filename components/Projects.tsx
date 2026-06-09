@@ -33,7 +33,7 @@ export function Projects() {
       id="projects"
       eyebrow="Featured Projects"
       title="Selected analytics & data science work"
-      intro="Production-aware projects across fraud analytics, e-commerce recommendation, NLP, and computer vision — two peer-reviewed and published."
+      intro="A mix of analytics, machine learning, NLP, and computer-vision projects — two of them peer-reviewed and published."
       action={
         <a
           href={profile.github}
@@ -102,7 +102,7 @@ function ProjectCard({ project: p, index }: { project: Project; index: number })
         </div>
 
         <h3 className="mt-3 text-base font-bold leading-snug">{p.title}</h3>
-        <p className="mt-2 line-clamp-3 text-sm leading-relaxed text-slate-600 dark:text-slate-400">
+        <p className="mt-2 text-sm leading-relaxed text-slate-600 dark:text-slate-400">
           {p.description}
         </p>
 
@@ -114,7 +114,7 @@ function ProjectCard({ project: p, index }: { project: Project; index: number })
           ))}
         </div>
 
-        <div className="mt-5 flex flex-wrap items-center gap-x-5 gap-y-2 border-t border-slate-100 pt-4 dark:border-navy-800">
+        <div className="mt-auto flex flex-wrap items-center gap-x-5 gap-y-2 border-t border-slate-100 pt-4 dark:border-navy-800">
           {p.link && (
             <a
               href={p.link}

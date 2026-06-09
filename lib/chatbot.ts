@@ -22,7 +22,7 @@ const SUGGESTIONS = [
   "What data tools does Baburam use?",
   "What Power BI experience does he have?",
   "Tell me about his fraud analytics project",
-  "Is he suitable for a Data Analyst role?",
+  "What does Baburam do as a data analyst?",
   "What is his education background?",
   "What certifications does he hold?",
   "How can I contact him?",
@@ -198,14 +198,14 @@ export function answer(question: string): string {
   if (score(q, ["suitable", "fit", "hire", "hiring", "canada", "remote", "data analyst", "business analyst", "bi analyst", "ready", "available"]) > 0) {
     m.push({
       score: 8,
-      reply: `Yes — Baburam is well-suited for Data Analyst, Business Intelligence Analyst, or Business Analyst roles. He's IBM Data Analyst certified, finishing an MSc in Computer Science at Algoma University (Ontario), and has shipped measurable results: ${stats.map((s) => `${s.value} ${s.label.toLowerCase()}`).join(", ")}. He is based in Edmonton, AB and open to roles across Canada.`,
+      reply: `Baburam is a data analyst specialising in SQL, Python, and Power BI. He's IBM Data Analyst certified, holds an MSc in Computer Science from Algoma University, and has delivered measurable results: ${stats.map((s) => `${s.value} ${s.label.toLowerCase()}`).join(", ")}. He's based in Edmonton, AB, Canada.`,
     });
   }
 
   if (score(q, ["where", "based", "located", "location", "edmonton", "ontario", "alberta"]) > 0) {
     m.push({
       score: 6,
-      reply: `Baburam is based in ${profile.location} and is finishing his MSc at Algoma University in Sault Ste. Marie, Ontario. He's open to Data Analyst, BI Analyst, and Business Analyst roles across Canada (remote, hybrid, or on-site).`,
+      reply: `Baburam is a data analyst based in ${profile.location}. He holds an MSc in Computer Science from Algoma University (Sault Ste. Marie, Ontario) and works across SQL, Python, and Power BI.`,
     });
   }
 
@@ -233,6 +233,6 @@ export function chatbotMeta() {
   return {
     name: "Ask about Baburam",
     suggestions: SUGGESTIONS,
-    welcome: `Hi! I'm trained on ${joinList(["Baburam's CV", "projects", "skills"])}. Ask me anything below.`,
+    welcome: `Hi! I answer questions straight from ${joinList(["Baburam's CV", "projects", "skills"])}. Ask me anything below.`,
   };
 }
