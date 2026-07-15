@@ -163,6 +163,11 @@ export function answer(question: string): string {
     if (s) m.push({ score: 9, reply: s });
   }
 
+  if (score(q, ["job market", "job postings", "salary", "eda", "exploratory", "software jobs", "job market analysis"]) > 0) {
+    const s = projectSummary("Job Market");
+    if (s) m.push({ score: 9, reply: s });
+  }
+
   if (score(q, ["project", "projects", "portfolio", "case study"]) > 0) {
     m.push({ score: 3, reply: `Featured projects:\n- ${projects.map((p) => p.title).join("\n- ")}\n\nAsk me about any of them by name.` });
   }

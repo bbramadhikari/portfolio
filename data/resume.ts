@@ -161,11 +161,44 @@ export type Project = {
   doi?: string;
   pdf?: string;
   // Card-display metadata (Featured Projects grid)
-  accent?: "fraud" | "ecommerce" | "nlp" | "vision" | "security" | "drone";
+  accent?:
+    | "fraud"
+    | "ecommerce"
+    | "nlp"
+    | "vision"
+    | "security"
+    | "drone"
+    | "analytics";
   headline?: { value: string; label: string };
 };
 
 export const projects: Project[] = [
+  {
+    title: "AI-Powered Job Market Analysis",
+    description:
+      "End-to-end exploratory data analysis of 10,000 software job postings (39 columns) — from raw ingestion and a systematic five-dimension cleaning audit through univariate, bivariate, and multivariate analysis, ending in an interactive Power BI dashboard built for non-technical stakeholders.",
+    tools: [
+      "Python",
+      "Pandas",
+      "NumPy",
+      "Matplotlib",
+      "Seaborn",
+      "Power BI",
+      "Power Query",
+      "DAX",
+    ],
+    value:
+      "Turns 10,000 raw postings into a clear read on role demand, salary benchmarks, remote-work trends, and the most sought-after skills — insights a hiring team or job seeker can act on directly.",
+    metrics: [
+      "Cleaned 10,000 records to zero missing values and zero duplicates (IQR outlier review)",
+      "12 charts across univariate, bivariate, and multivariate analysis",
+      "Power BI dashboard: 4 KPI cards, 4 charts, 2 slicers — skills unpivoted to ~112K rows",
+    ],
+    category: ["Data Analytics", "BI"],
+    link: "https://github.com/bbramadhikari/Job_Market_Analysis",
+    accent: "analytics",
+    headline: { value: "10K jobs", label: "EDA + Power BI dashboard" },
+  },
   {
     title: "Bank Transaction Fraud Analytics",
     description:
@@ -323,7 +356,7 @@ export const stats = [
   { value: "500K+", label: "Records Analyzed", sub: "Across multiple datasets", icon: "Database" },
   { value: "30%", label: "Data Quality Improvement", sub: "Enhanced accuracy & reliability", icon: "TrendingUp" },
   { value: "20%", label: "Reporting Time Reduction", sub: "Through automation & ETL", icon: "Clock" },
-  { value: "6", label: "Featured Projects", sub: "ML, NLP, Vision & Security", icon: "FileText" },
+  { value: "7", label: "Featured Projects", sub: "Analytics, BI, ML, NLP & Vision", icon: "FileText" },
 ];
 
 // Curated, recruiter-facing skill highlights for the "Skills Dashboard" grid.

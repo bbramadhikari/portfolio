@@ -169,6 +169,7 @@ const GRADIENTS: Record<string, string> = {
   vision: "from-amber-950 via-navy-900 to-navy-950",
   security: "from-cyan-950 via-navy-900 to-navy-950",
   drone: "from-emerald-950 via-navy-900 to-navy-950",
+  analytics: "from-sky-900 via-navy-900 to-navy-950",
   default: "from-navy-800 to-navy-950",
 };
 
@@ -277,6 +278,26 @@ function ThumbMotif({ accent }: { accent?: Project["accent"] | "default" }) {
             {w}
           </span>
         ))}
+      </div>
+    );
+  }
+  if (accent === "analytics") {
+    return (
+      <div className="absolute right-5 top-5 flex items-end gap-2.5 opacity-90">
+        {/* donut ring — work-mode style KPI */}
+        <span className="grid h-12 w-12 place-items-center rounded-full border-[3px] border-coral-400/70">
+          <span className="h-5 w-5 rounded-full bg-coral-500/80" />
+        </span>
+        {/* KPI bars */}
+        <div className="flex h-16 items-end gap-1.5">
+          {[45, 70, 55, 90].map((h, i) => (
+            <span
+              key={i}
+              style={{ height: `${h}%` }}
+              className="w-3 rounded-t bg-gradient-to-t from-coral-600 to-coral-400"
+            />
+          ))}
+        </div>
       </div>
     );
   }
