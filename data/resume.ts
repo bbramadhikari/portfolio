@@ -13,11 +13,11 @@ export const profile = {
 };
 
 export const about = {
-  summary: `I'm a data analyst who works mostly in SQL, Python, and Power BI — across operational, customer, and financial data. I'm IBM Data Analyst certified and hold an MSc in Computer Science from Algoma University. In my last role I cleaned and analysed 500K+ records, improved data quality by about 30%, cut manual reporting time by 20–25%, and built ETL workflows that took the repetitive work out of stakeholder reporting.`,
+  summary: `I'm a data analyst with 4+ years of experience, working mostly in SQL, Python, and Power BI — across operational, customer, and financial data. I'm IBM Data Analyst certified and hold an MSc in Computer Science from Algoma University. At APAR Nepal I cleaned and analysed 500K+ records, improved data quality by about 30%, cut manual reporting time by 20–25%, and built ETL workflows that took the repetitive work out of stakeholder reporting.`,
   highlights: [
     "MSc in Computer Science — Algoma University, Ontario",
     "IBM Data Analyst Professional Certificate (2025)",
-    "2+ years of analytics experience across product, ops & finance datasets",
+    "4+ years of analytics experience across product, ops & finance datasets",
     "Specialise in SQL, Python, Power BI, and automated ETL & reporting workflows",
   ],
 };
@@ -109,9 +109,9 @@ export type Experience = {
 export const experience: Experience[] = [
   {
     role: "Data Analyst",
-    company: "Leapfrog Technology, Inc.",
+    company: "APAR Nepal",
     location: "Kathmandu, Nepal (Hybrid)",
-    start: "Feb 2024",
+    start: "Feb 2023",
     end: "Nov 2024",
     bullets: [
       "Cleaned, validated, and performed EDA on 500K+ records using Python (Pandas, NumPy) and SQL, improving data quality and analysis accuracy by ~30%.",
@@ -123,11 +123,11 @@ export const experience: Experience[] = [
     stack: ["Python", "SQL", "Power BI", "ETL", "Pandas", "Matplotlib"],
   },
   {
-    role: "Data & Business Analyst (Analytics Support)",
-    company: "APAR Nepal",
+    role: "Data & Business Analyst",
+    company: "Leapfrog Technology, Inc. (Analytics Support)",
     location: "Kathmandu, Nepal",
-    start: "Sep 2022",
-    end: "Dec 2023",
+    start: "Sep 2020",
+    end: "Dec 2022",
     bullets: [
       "Analyzed operational and customer datasets using SQL and Excel to surface usage trends, conversion drop-offs, and workflow bottlenecks.",
       "Built Excel and Power BI dashboards tracking website performance, user engagement, and key operational KPIs for management review.",

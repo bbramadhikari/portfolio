@@ -46,9 +46,9 @@ export function Hero() {
               <span className="gradient-text">Business Decisions</span>
             </h2>
             <p className="mt-4 max-w-xl text-sm leading-relaxed text-slate-300 sm:text-base">
-              I&apos;m a data analyst. I take raw, messy data and turn it into
-              dashboards and reports that help teams make decisions without
-              second-guessing the numbers.
+              I&apos;m a data analyst with 4+ years of experience. I take raw,
+              messy data and turn it into dashboards and reports that help teams
+              make decisions without second-guessing the numbers.
             </p>
 
             <div className="mt-8 flex flex-wrap gap-3">

@@ -110,7 +110,7 @@ export function answer(question: string): string {
   }
 
   if (score(q, ["power bi", "powerbi", "dashboard", "dashboards"]) > 0) {
-    m.push({ score: 8, reply: `Yes — Power BI is one of Baburam's core tools. At Leapfrog Technology he designed and deployed interactive Power BI dashboards (alongside automated Matplotlib visuals) that reduced manual reporting effort by about 20%. At APAR Nepal he built Excel + Power BI dashboards tracking website performance, user engagement, and operational KPIs for management review.` });
+    m.push({ score: 8, reply: `Yes — Power BI is one of Baburam's core tools. At APAR Nepal he designed and deployed interactive Power BI dashboards (alongside automated Matplotlib visuals) that reduced manual reporting effort by about 20%. Earlier, at Leapfrog Technology, he built Excel + Power BI dashboards tracking website performance, user engagement, and operational KPIs for management review.` });
   }
 
   if (score(q, ["tableau", "looker", "looker studio"]) > 0) {
@@ -122,11 +122,11 @@ export function answer(question: string): string {
   }
 
   if (score(q, ["python", "pandas", "numpy", "scipy"]) > 0) {
-    m.push({ score: 7, reply: `Python is one of Baburam's primary tools. He uses Pandas, NumPy, and SciPy for cleaning, EDA, feature engineering, and ETL — including a 500K+ record dataset at Leapfrog Technology where he lifted data quality and analysis accuracy by ~30%.` });
+    m.push({ score: 7, reply: `Python is one of Baburam's primary tools. He uses Pandas, NumPy, and SciPy for cleaning, EDA, feature engineering, and ETL — including a 500K+ record dataset at APAR Nepal where he lifted data quality and analysis accuracy by ~30%.` });
   }
 
   if (score(q, ["etl", "pipeline", "pipelines", "ingestion", "transform"]) > 0) {
-    m.push({ score: 7, reply: `At Leapfrog Technology, Baburam built and maintained end-to-end ETL workflows covering ingestion, transformation, feature engineering, and pipeline monitoring — producing a more reliable and scalable analytics layer. At APAR Nepal he supported lightweight ETL tasks including extraction, cleaning, deduplication, and consolidation into structured reporting tables.` });
+    m.push({ score: 7, reply: `At APAR Nepal, Baburam built and maintained end-to-end ETL workflows covering ingestion, transformation, feature engineering, and pipeline monitoring — producing a more reliable and scalable analytics layer. Earlier, at Leapfrog Technology, he supported lightweight ETL tasks including extraction, cleaning, deduplication, and consolidation into structured reporting tables.` });
   }
 
   if (score(q, ["machine learning", "model", "models", "random forest", "xgboost", "isolation forest", "clustering", "scikit", "sklearn"]) > 0) {

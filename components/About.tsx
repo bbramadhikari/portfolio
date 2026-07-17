@@ -76,7 +76,7 @@ export function About() {
               <Fact
                 icon={<Briefcase size={16} />}
                 label="Experience"
-                value="Data Analyst @ Leapfrog Technology · Data & Business Analyst @ APAR Nepal"
+                value="Data Analyst @ APAR Nepal · Data & Business Analyst @ Leapfrog Technology"
               />
             </ul>
           </div>
